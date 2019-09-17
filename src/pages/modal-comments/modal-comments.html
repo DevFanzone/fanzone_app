@@ -1,0 +1,50 @@
+<ion-header>
+
+    <ion-navbar color="redturn">
+        <ion-buttons start>
+            <button ion-button (click)="dismissView()">
+          <span>Close</span>
+        </button>
+        </ion-buttons>
+
+        <ion-title>
+            Comments
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+
+
+    <ion-list>
+        <ion-item *ngFor="let comment of comments">
+            <!--<ion-avatar item-start>
+                <img [src]="comment.image">
+            </ion-avatar>-->
+            <p text-wrap ion-text color="dark"><strong>{{ comment.nombreUsuario }}</strong> {{ comment.comentario }}</p>
+            <ion-note>{{ comment.fechaRegistro }}</ion-note>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
+
+<ion-footer no-border [style.height]="showEmojiPicker ? '255px' : '55px'">
+    <div class="input-wrap" *ngIf="user.isPremium">
+        <!--<button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+        <ion-icon name="md-happy"></ion-icon>
+      </button>-->
+        <textarea #chat_input placeholder="Your comment..." [(ngModel)]="post" (keyup.enter)="postComment()" (focusin)="onFocus()">
+      </textarea>
+        <button ion-button clear small (click)="postComment()">
+        Post
+      </button>
+    </div>
+    <ion-row *ngIf="!user.isPremium">
+        <ion-col text-center>
+            <p class="redturn-paragraph" style="color:#f53d3d;font-weight: bolder; margin-top: -0.1rem;">To comment or share, please login or upgrade your account</p>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -1,0 +1,11 @@
+{
+    "android": {
+        "release": {
+            "keystore": "/Users/pedroreynoso/Documents/Proyectos Angular/FANZONE/fanzone_titan_23/titan23.keystore",
+            "storePassword": "titan23",
+            "alias": "titan23",
+            "password": "titan23",
+            "keystoreType": "JKS"
+        }
+    }
+}

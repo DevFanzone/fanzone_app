@@ -1,0 +1,18 @@
+page-profile {
+    #btn-cancel-subscription {
+        button {
+            height: 1.1em;
+        }
+        .button-inner {
+            border-bottom: 1px solid map-get($colors, redturn);
+        }
+    }
+    .redturn-list {
+        div:first-child {
+            margin-top: 10px;
+        }
+        div {
+            margin-bottom: 20px;
+        }
+    }
+}

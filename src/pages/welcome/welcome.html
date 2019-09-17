@@ -1,0 +1,15 @@
+<ion-content>
+    <div padding-horizontal class="display-flex wrap">
+        <div padding class="display-flex">
+            <img src="assets/imgs/iconos/logo-circulo.png" alt="logo" style="width: 50%;">
+            <br>
+            <div class="wrap-buttons">
+                <img src="assets/imgs/iconos/free.png" (tap)="goToLogin(6)" />
+                <button ion-button block color="redturn" (tap)="goToLogin(6)"><strong>GO TO PREMIUM</strong></button>
+                <p text-center ion-text color="light">See new and exclusive content and be closer to your favorite player</p>
+                <button ion-button block outline color="redturn" (tap)="goToLogin(5)"><strong ion-text color="light">TAKE A LOOK</strong></button><br/>
+                <button  (tap)="openPrivacyPolicy('PrivacyPageInit')" ion-button block clear small  style="color:white;">Privacy Policy</button>
+            </div>
+        </div>
+    </div>
+</ion-content>

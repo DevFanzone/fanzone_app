@@ -1,0 +1,180 @@
+page-home {
+    ion-refresher {
+        top: 10px !important;
+    }
+    .scroll-content {
+        height: 84% !important;
+    }
+
+    .no-opacity:disabled{
+        opacity:1;
+    }
+
+    vg-player {
+        overflow: unset;
+    }
+
+    .vg-controls {
+        justify-content: flex-end;
+        background: transparent;
+    }
+
+    .mute-button {
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+        line-height: 4rem !important;
+        right: 5px !important;
+        bottom: 45px !important;
+        position: absolute !important;
+        z-index: 9999 !important;
+        color: #fff;
+    }
+
+    .slide-img {
+        height: 45vh;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .social-section {
+        padding: 0px !important;
+        .social-icons {
+            img {
+                width: 25px;
+            }
+        }
+        img {
+            width: 75%;
+        }
+    }
+
+    .focus-color {
+        color: map-get($colors, danger);
+        font-weight: bolder;
+    }
+
+    .menu-unactive {
+        -webkit-filter: grayscale(100%);
+        /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+    }
+
+    .image-blur {
+        img {
+            -webkit-filter: blur(3px);
+            filter: blur(3px);
+        }
+    }
+
+    ion-card {
+        border-radius: 0 !important;
+        box-shadow: 0 0 !important;
+        img {
+            border-radius: 4px;
+        }
+        ion-card-content {
+            padding: 0px 5px 16px !important;
+        }
+    }
+
+    ion-slides,
+    .swiper-pagination-fraction,
+    .swiper-pagination-custom,
+    .swiper-container-horizontal>.swiper-pagination-bullets {
+        bottom: 20px;
+    }
+
+    .swiper-container {
+        border-radius: 4px;
+        .swiper-pagination-bullet-active {
+            background: map-get($colors, azul) !important;
+        }
+        .swiper-pagination-bullet {
+            background: map-get($colors, redturn);
+            opacity: 1;
+        }
+    }
+
+    .icon-row {
+        .social-icon {
+            ion-icon {
+                padding: 0 0.1em;
+            }
+        }
+    }
+
+    .elevation {
+        //margin-top:40px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        //margin-bottom: 15%;
+        //top: 50 px;
+        //position: -webkit-sticky; /* Safari */
+        //position: sticky;
+        //z-index: 999999998 !important;
+        background: white;
+        overflow-y:hidden;
+        overflow:hidden;
+
+    }
+
+    /*.insignia-now {
+        width: 59px;
+        position: absolute;
+        z-index: 2 !important;
+        img {
+            top: -64px;
+            left: -0.4px;
+            position: relative;
+        }
+    }*/
+
+    .insignia-now {
+      width: 59px;
+      bottom: 40px !important;
+      position: absolute !important;
+      z-index: 400!important;
+    }
+    .insignia-now-exclusive {
+        img {
+            top: -63px;
+            left: -0.4px;
+        }
+    }
+
+    /*.insignia-previous {
+        width: 84px;
+        position: absolute;
+        z-index: 2 !important;
+        img {
+            top: -64px;
+            left: -0.52px;
+            position: relative;
+        }
+    }*/
+
+    .insignia-previous {
+        width: 84px;
+        bottom: 40px !important;
+        position: absolute !important;
+        z-index: 9999 !important;
+
+
+    }
+
+    .wrap-insignia-exclusive {
+        position: absolute;
+          z-index: 2 !important;
+        right: 8px;
+        img {
+            width: 120px;
+            float: right;
+            top: -8px;
+            position: relative;
+        }
+    }
+
+    .wrap-card-content {
+        position: relative;
+        top: -16px;
+    }
+}

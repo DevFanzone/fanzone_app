@@ -1,0 +1,193 @@
+// http://ionicframework.com/docs/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+
+.btn-transparent {
+  width:30px;
+  height:30px;
+  margin: 5px;
+  background-color: Transparent;
+  font-size: 20px;
+  border: 1.5px solid;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: bold;
+  padding:0;
+  text-transform: uppercase;
+
+}
+
+@media(min-width:750px){
+    .btn-transparent {
+      width:45px;
+      height:45px;
+      margin: 10px;
+      background-color: Transparent;
+      font-size: 35px;
+      border: 1.5px solid;
+      text-align: center;
+      border-radius: 50%;
+      font-weight: bold;
+      padding:0;
+      text-transform: uppercase;
+
+    }
+}
+
+@media(min-width:1024px){
+    .btn-transparent {
+        margin: 30rem 23rem;
+    }
+}
+
+.splashView2 {
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover!important;
+  background-position: center top;
+  object-fit: cover;
+  height: 100vh;
+
+  @media (min-width: 1024px) {
+    background-size: 58% auto !important;
+    -webkit-background-size: 58% auto !important;
+    -moz-background-size: 58% auto !important;
+    -o-background-size: 58% auto !important;
+  }
+}
+
+@font-face {
+    font-family: 'daysOneRegular';
+    src: url(../assets/fonts/DaysOne-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'juraMedium';
+    src: url(../assets/fonts/Jura-Medium.ttf);
+}
+
+@font-face {
+    font-family: juraBold;
+    src: url(../assets/fonts/Jura-Bold.ttf);
+}
+
+@font-face {
+    font-family: juraRegular;
+    src: url(../assets/fonts/Jura-Regular.ttf);
+}
+
+@font-face {
+    font-family: juraLight;
+    src: url(../assets/fonts/Jura-Light.ttf);
+}
+
+@font-face {
+    font-family: juraSemibold;
+    src: url(../assets/fonts/Jura-SemiBold.ttf);
+}
+
+* {
+    font-family: juraMedium;
+}
+
+.redturn-title {
+    color: map-get($colors, redturn);
+    border-bottom: 2px solid map-get($colors, azul);
+    h4 {
+        font-family: daysOneRegular;
+        font-weight: bolder;
+    }
+}
+
+.redturn-post-title {
+    font-family: juraBold;
+}
+
+.redturn-paragraph {
+    font-family: juraRegular;
+    color: map-get($colors, gris);
+}
+
+.redturn-comments {
+    font-family: juraLight;
+    color: map-get($colors, gris-claro) !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.redturn-list {
+    div {
+        button {
+            height: 1.4em;
+        }
+        .button-inner {
+            font-size: 11px;
+            font-weight: bolder;
+            color: map-get($colors, gris-claro);
+            border-bottom: 1px solid map-get($colors, gris-claro);
+        }
+    }
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.display-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.display-flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*.md {
+    .has-header {
+        margin-top: 56px;
+        .scroll-content {
+            height: calc(100% - 56px);
+        }
+    }
+}*/
+
+
+/*.ios {
+    .has-header {
+        margin-top: 44px;
+        .scroll-content {
+            height: calc(100% - 44px);
+        }
+    }
+}*/
+
+
+.ion-page > ion-header {
+position: relative !important;
+}
+
+.ion-page > ion-content {
+position: relative !important;
+}
+
+.ion-page > ion-content > .fixed-content,
+.ion-page > ion-content > .scroll-content {
+margin: 0 !important;
+}

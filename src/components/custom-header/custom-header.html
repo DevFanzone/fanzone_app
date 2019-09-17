@@ -1,0 +1,22 @@
+<!--<ion-header>-->
+    <ion-navbar color="redturn">
+        <ion-title *ngIf="!isSearchbarOpened" (tap)="normalContent()">
+            <img src="assets/imgs/iconos/logo.png" alt="REDTURN2" height="32">
+        </ion-title>
+        <ion-searchbar #searchBar [hidden]="!isSearchbarOpened" showCancelButton="true" (ionCancel)="isSearchbarOpened=false" (search)="onSearch($event)"></ion-searchbar>
+        <ion-buttons end>
+            <button ion-button icon-only [hidden]="isSearchbarOpened" (tap)="isSearchbarFocus()">
+              <img src="assets/imgs/iconos/llupa.png" alt="search" width="20" height="20">
+            </button>
+            <button ion-button icon-only (tap)="exclusiveContent()">
+                <img src="assets/imgs/iconos/exclusive-content.png" alt="exclusive" width="25" height="25">
+              </button>
+            <button ion-button icon-only (tap)="goToProfile()">
+                <img [src]="user?.image" alt="profile" width="25" height="25" class="img-circle">
+              </button>
+            <button ion-button icon-only (tap)="openShopify()">
+                <img src="assets/imgs/iconos/shop.png" alt="shop" width="25" height="25">
+              </button>
+        </ion-buttons>
+    </ion-navbar>
+<!--</ion-header>-->

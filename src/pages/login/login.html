@@ -1,0 +1,18 @@
+<ion-content padding>
+    <div class="display-flex wrap" padding-horizontal>
+        <img src="assets/imgs/iconos/logo-circulo.png" alt="logo" style="width: 50%;">
+        <br>
+        <button (tap)="loginFacebook()" ion-button icon-start block color="facebook">        
+        <ion-icon name="logo-facebook"></ion-icon>
+        Sign up with Facebook
+      </button>
+        <!--<button (tap)="loginGoogle()" ion-button icon-start block color="googleplus">
+        <ion-icon name="logo-googleplus"></ion-icon>
+        Sign up with Google&nbsp;&nbsp;
+      </button>-->
+        <button (tap)="loginGoogle()" ion-button icon-start block color="light">
+          <img src="assets/imgs/iconos/google-signin.png" width="24" style="padding-right: 0.3em;left: -10px;position: relative;"/>
+          Sign in with Google&nbsp;&nbsp;
+        </button>
+    </div>
+</ion-content>

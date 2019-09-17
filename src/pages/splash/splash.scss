@@ -1,0 +1,22 @@
+page-splash {
+  .content {
+    background: url('../assets/imgs/iconos/splash-lines.png') no-repeat center center fixed;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    background-size: cover !important;
+  }
+
+  .wrap {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+ion-content {
+  .bottom-text {
+    position: relative;
+    text-align: center;
+    z-index: 9999;
+    color: #fff
+  }
+}

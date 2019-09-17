@@ -1,0 +1,157 @@
+<ion-header no-border>
+  <custom-header></custom-header>
+  <div *ngIf="menuLoaded" class="animated fadeIn elevation">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let collection of collections">
+          <button class="no-opacity" [disabled]="(this.BtnDalay[collection.id])? true : false"
+            style="padding: 0 !important; margin: 0 !important; background-color: Transparent;">
+            <img *ngIf="collection.estatus == 0"
+              (tap)="loadCollectionPosts(collection.id, collection.urlSplah, collection.lastUpdateSplash);"
+              [src]="collection.urlArchivoOriginal" [alt]="collection.nombre"
+              [class.menu-unactive]="collectionId && (collection.id != collectionId)" />
+          </button>
+        </ion-col>
+        <ion-col *ngIf="collections" (tap)="openShopify()">
+          <img src="assets/imgs/botones/categoria-store.png" alt="game">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-header>
+<ion-content no-bounce class="has-header" (ionScroll)="functionToTriggerOnScroll($event)">
+  <ion-refresher pullMin="80" pullmax="200" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+      refreshing-spinner="bubbles"
+      ></ion-refresher-content>
+  </ion-refresher>
+  <br/>
+  <div text-center *ngIf="loading && isRefresh==false">
+    <ion-spinner></ion-spinner>
+  </div>
+  <span *ngFor="let post of posts; let idx = index">
+    <ion-card *ngIf="post.estatus == 0 && (post.tipoPost == 1 || post.tipoPost == 2)" class="animated fadeIn">
+      <div class="wrap-insignia-exclusive">
+        <span *ngIf="post.tipoPost == 1">
+          <img src="assets/imgs/iconos/insignia.png" />
+        </span>
+      </div>
+      <div>
+        <ion-slides (ionSlideDidChange)="cdOfVideo()" #loopSlider [pager]="(post.media.length > 1)? true :false">
+          <ion-slide *ngFor="let mediaItem of post.media; let i = index">
+            <div *ngIf="mediaItem.tipo == 'video/mp4'" class="slide-img">
+              <vg-player (tap)="handleVideo(media)" (onPlayerReady)="onPlayerReady($event)">
+                <vg-overlay-play></vg-overlay-play>
+                <vg-buffering></vg-buffering>
+                <video [vgMedia]="media" #media class="singleVideo" controlsList="nodownload" id="singleVideo{{idx}}"
+                  webkit-playsinline="webkit-playsinline" playsinline preload="auto" crossorigin
+                  poster="{{mediaItem.urlArchivoNormal || ''}}">
+                  <source
+                    src="{{ (user.isPremium) ? mediaItem.urlArchivoOriginal : (post.tipoPost == 2) ? mediaItem.urlArchivoOriginal : mediaItem.urlArchivoDifuminada }}"
+                    type="video/mp4">
+                </video>
+              </vg-player>
+              <div (click)="mute(media)" class="mute-button">
+                <ion-icon [name]="media.muted ? 'md-volume-off':'md-volume-up'"></ion-icon>
+              </div>
+            </div>
+            <div
+              *ngIf="( mediaItem.tipo == 'image/jpeg' || mediaItem.tipo == 'image/jpg' || mediaItem.tipo == 'image/png' ) && ((user.isPremium) || (post.tipoPost == 2))">
+              <img-loader useImg [src]="mediaItem.urlArchivoNormal"
+                [class.image-blur]="(!user.isPremium) && post.tipoPost == 1"></img-loader>
+            </div>
+            <div
+              *ngIf="( mediaItem.tipo == 'image/jpeg' || mediaItem.tipo == 'image/jpg' || mediaItem.tipo == 'image/png' ) && ((!user.isPremium) && (post.tipoPost != 2))">
+              <img-loader useImg [src]="mediaItem.urlArchivoNormal"
+                [class.image-blur]="(!user.isPremium) && post.tipoPost == 1"></img-loader>
+            </div>
+            <div *ngIf="mediaItem.tipo == 'sound/mp3'" class="slide-img">
+              <audio #myAudio controls>
+                <source
+                  src="{{ (user.isPremium) ? mediaItem.urlArchivoOriginal : (post.tipoPost == 2) ? mediaItem.urlArchivoOriginal : mediaItem.urlArchivoDifuminada }}"
+                  type="audio/mpeg">
+                Your device does not support the audio element.
+              </audio>
+            </div>
+            <br /><br />
+            <div class="insignia-now" [class.insignia-now-exclusive]="(post.tipoPost == 1 && !user.isPremium)">
+              <ng-container *ngIf="idx == 0">
+                <img src="assets/imgs/insignias/now.png" />
+              </ng-container>
+            </div>
+            <div class="insignia-previous">
+              <ng-container *ngIf="idx > 0">
+                <img src="assets/imgs/insignias/previous.png" />
+              </ng-container>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+      <ion-card-content class="wrap-card-content">
+        <h2 class="redturn-post-title">{{ post.tituloPost }}</h2>
+        <ion-note class="redturn-comments">{{ post.fechaRegistro | moment:'MM-DD-YYYY HH:mm:ss' }}</ion-note>
+        <p>{{ post.descripcionPost }}</p>
+      </ion-card-content>
+      <ion-grid class="social-section wrap-card-content">
+        <ion-row>
+          <ion-col col-4 class="display-flex" text-center (tap)="openModalComments(post)">
+            <span class="redturn-comments">{{ post.commentsCount }} comment(s)</span>
+          </ion-col>
+          <ion-col col-4 class="display-flex">
+            <ion-row class="social-icons">
+              <ion-col class="display-flex-row">
+                <div ion-text color="dark" class="redturn-comments">{{ post.likesCount }}</div>
+                <button ion-button icon-only small clear (tap)="postLike(post)">
+                  <img src="assets/imgs/iconos/heart.png" alt="heart">
+                </button>
+                <button ion-button icon-only small clear (tap)="shareViaFacebook(post)">
+                  <img src="assets/imgs/iconos/fb.png" alt="facebook">
+                </button>
+                <button ion-button icon-only small clear (tap)="shareViaTwitter(post)">
+                  <img src="assets/imgs/iconos/tw.png" alt="twitter">
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col col-4 class="display-flex-row" (tap)="loadCollectionPosts(post.idCategoria)">
+            <div><img src="assets/imgs/iconos/caricatura.png"></div>
+            <div ion-text color="azul" style="font-family: daysOneRegular; font-size: 4vw;">{{ post.nombreCategoria }}
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="!user.isPremium">
+          <ion-col text-center>
+            <p class="redturn-paragraph" [class.focus-color]="post?.addAnim">To comment or share, please login or
+              upgrade your account</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-card *ngIf="post.estatus == 0 && post.tipoPost == 4" class="animated fadeIn">
+      <div class="wrap-insignia-exclusive">
+        <span>
+          <img src="assets/imgs/insignias/sponsor.png" style="top: 0" />
+        </span>
+      </div>
+      <ion-slides #loopSlider [pager]="(post.media.length > 1)? true :false">
+        <ion-slide *ngFor="let mediaItem of post.media">
+          <div class="slide-img" text-center
+            [ngStyle]="{'background': 'url(' + mediaItem.urlArchivoOriginal + ') center center', 'background-size': 'cover'}">
+          </div>
+          <br /><br />
+        </ion-slide>
+      </ion-slides>
+    </ion-card>
+  </span>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <div text-center padding *ngIf="!loading && posts.length == 0">
+    No results found
+  </div>
+  <ion-infinite-scroll threshold="100%" (ionInfinite)="morePosts($event)" [enabled]="!isSearch">
+    <ion-infinite-scroll-content loadingSpinner="crescent">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

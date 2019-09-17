@@ -1,0 +1,25 @@
+page-welcome {
+    .content {
+        background: url('../assets/imgs/iconos/splash.png') no-repeat center center fixed;
+        -webkit-background-size: cover !important;
+        -moz-background-size: cover !important;
+        background-size: cover !important;
+    }
+    .wrap {
+        height: 100%;
+        width: 100%;
+    }
+    .wrap-buttons {
+        width: 80%;
+        img {
+            position: relative;
+            top: 52px;
+            right: 40px;
+            width: 105px;
+            z-index: 2;
+        }
+        p {
+            font-size: 12px;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+<ion-nav [root]="rootPage"></ion-nav>
+<ng-container *ngIf="this.splashView">
+      <div class="splashView2 animated bounceInLeft" #splasLife [ngStyle]="{'background': 'url('+splashImage+') no-repeat center center fixed'}">
+          <button type="button" style=" float: right; color:white;" class="btn-transparent" name="button" (click)="touchend($event)">&#x2715;</button>
+      </div>
+</ng-container>

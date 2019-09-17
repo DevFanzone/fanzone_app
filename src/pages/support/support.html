@@ -1,0 +1,35 @@
+<custom-header></custom-header>
+
+<ion-content padding text-center class="has-header">
+    <div padding-horizontal>
+        <div class="redturn-title" margin-horizontal>
+            <h4>SUPPORT</h4>
+        </div>
+        <div ion-text color="azul"><strong>Contact us! We want to hear from you</strong></div>
+        <div ion-text color="azul" text-justify padding>
+
+            <form (ngSubmit)="composeEmail()" [formGroup]="form1">
+                <ion-list no-lines padding-vertical>
+
+                    <ion-item>
+                        <ion-input type="text" placeholder="Name" formControlName="name"></ion-input>
+                    </ion-item>
+                    <p ion-text color="danger" *ngIf="form1.controls.name.hasError('required') && (form1.controls.name.touched || submitAttempt)"><strong>This field is required.</strong></p>
+                    <ion-item>
+                        <ion-input type="email" placeholder="Mail" formControlName="email"></ion-input>
+                    </ion-item>
+                    <p ion-text color="danger" *ngIf="!form1.controls.email.valid && form1.controls.email.touched"><strong>Invalid email.</strong></p>
+                    <p ion-text color="danger" *ngIf="form1.controls.email.hasError('required') && (form1.controls.email.touched || submitAttempt)"><strong>This field is required.</strong></p>
+                    <ion-item>
+                        <ion-textarea rows="6" placeholder="Issue" formControlName="body"></ion-textarea>
+                    </ion-item>
+                    <p ion-text color="danger" *ngIf="form1.controls.body.hasError('required') && (form1.controls.body.touched || submitAttempt)"><strong>This field is required.</strong></p>
+
+                </ion-list>
+
+                <button ion-button block color="redturn" [disabled]="form1.invalid">SEND</button>
+
+            </form>
+        </div>
+    </div>
+</ion-content>
